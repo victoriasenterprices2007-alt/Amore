@@ -109,19 +109,27 @@ section{padding:110px 0}
 .why-item h3{font-family:var(--serif);font-size:1.45rem;font-weight:500;margin:10px 0 8px}
 .why-item p{font-size:.9rem;color:var(--grey)}
 
-/* REVIEWS */
-.reviews{background:var(--black);color:var(--white)}
-.reviews .eyebrow{color:var(--red)}
-.reviews .lead{color:rgba(255,255,255,.65)}
-.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.rev{border:1px solid rgba(255,255,255,.14);padding:34px 30px;position:relative}
-.rev::before{content:"“";position:absolute;top:6px;right:22px;font-family:var(--serif);font-size:5rem;color:var(--red);line-height:1}
-.stars{color:var(--red);letter-spacing:4px;font-size:1rem;margin-bottom:16px}
-.rev p{font-family:var(--serif);font-size:1.25rem;font-style:italic;line-height:1.5}
-.rev .who{margin-top:20px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.rev.placeholder{border-style:dashed;border-color:rgba(200,16,46,.6)}
-.rev.placeholder p{font-style:normal;font-family:var(--sans);font-size:.9rem;color:rgba(255,255,255,.6)}
-.rev-cta{margin-top:40px;text-align:center}
+/* GALERÍA */
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gal-item{position:relative;overflow:hidden;background:var(--off);cursor:zoom-in;border:none;padding:0;display:block;aspect-ratio:3/4}
+.gal-item.wide{grid-column:span 2;aspect-ratio:auto}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.gal-item:hover img{transform:scale(1.04)}
+.gal-cap{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;text-align:left;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.gal-cap::before{content:"";display:inline-block;width:18px;height:2px;background:var(--red);vertical-align:middle;margin-right:10px}
+.gal-note{font-size:.76rem;color:var(--grey);text-align:center;margin-top:22px}
+.gal-cta{margin-top:36px;text-align:center}
+.gal-cta .btn-ghost{color:var(--ink)}
+.gal-cta .btn-ghost:hover{background:var(--ink);color:var(--white)}
+@media(max-width:820px){.gal-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.gal-grid{gap:8px}.gal-cap{font-size:.6rem;padding:28px 10px 10px}}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:20px}
+.lb.open{display:flex}
+.lb img{max-width:100%;max-height:84vh;object-fit:contain}
+.lb figcaption{color:#fff;text-align:center;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;margin-top:14px}
+.lb button{position:absolute;background:none;border:none;color:#fff;font-size:2.4rem;cursor:pointer;padding:10px 16px;line-height:1}
+.lb .lb-x{top:10px;right:10px}.lb .lb-prev{left:6px;top:50%;transform:translateY(-50%)}.lb .lb-next{right:6px;top:50%;transform:translateY(-50%)}
+.lb button:hover{color:var(--red)}
 
 /* CONTACT */
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
@@ -201,7 +209,7 @@ footer{background:var(--black);color:rgba(255,255,255,.65);padding:64px 0 36px;f
     <ul class="nav-links">
       <li><a href="#precios">Servicios</a></li>
       <li><a href="#precios" data-tab="bf">Black Friday</a></li>
-      <li><a href="#resenas">Reseñas</a></li>
+      <li><a href="#trabajos">Trabajos</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <a class="btn btn-red nav-cta js-wa" href="https://wa.me/50688069388?text=Hola%20AMORE%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20agendar%20una%20cita.%20%C2%BFQu%C3%A9%20espacios%20tienen%20disponibles%3F" rel="noopener noreferrer" target="_blank">Agendar</a>
@@ -278,15 +286,15 @@ footer{background:var(--black);color:rgba(255,255,255,.65);padding:64px 0 36px;f
   </div>
 </section>
 
-<section class="reviews" id="resenas">
+<section id="trabajos">
   <div class="wrap">
     <div class="sec-head center">
-      <div class="eyebrow">Reseñas</div>
-      <h2>Lo que dicen nuestras clientas</h2>
-      <p class="lead">Opiniones reales de quienes ya confiaron su cabello a AMORE.</p>
+      <div class="eyebrow">Galería</div>
+      <h2>Nuestros trabajos</h2>
+      <p class="lead">Color, rizos y alisados hechos con técnica y mucho amor.</p>
     </div>
-    <div class="rev-grid" id="revGrid"></div>
-    <div class="rev-cta"><a class="btn btn-ghost js-ig" href="https://www.instagram.com/amore_centrodebelleza0624/" target="_blank" rel="noopener noreferrer">Ver más en Instagram</a></div>
+    <div class="gal-grid" id="galGrid"></div>
+    <div class="gal-cta"><a class="btn btn-ghost js-ig" href="https://www.instagram.com/amore_centrodebelleza0624/" target="_blank" rel="noopener noreferrer">Ver más en Instagram</a></div>
   </div>
 </section>
 
@@ -337,6 +345,14 @@ footer{background:var(--black);color:rgba(255,255,255,.65);padding:64px 0 36px;f
   <span class="wa-txt">Agendá tu cita</span>
   <span class="wa-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4 3.5 3.5 0 0 0-1.1 2.6 6 6 0 0 0 1.3 3.2 13.8 13.8 0 0 0 5.3 4.7c2 .8 2.7.9 3.7.8a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zm8.4-18.2A11.8 11.8 0 0 0 1.8 17.8L.1 24l6.3-1.7a11.8 11.8 0 0 0 5.6 1.4A11.8 11.8 0 0 0 20.4 3.6z"/></svg></span>
 </a>
+
+<!-- VISOR DE FOTOS -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto de la galería">
+  <button class="lb-x" type="button" aria-label="Cerrar">×</button>
+  <button class="lb-prev" type="button" aria-label="Anterior">‹</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-next" type="button" aria-label="Siguiente">›</button>
+</div>
 
 <!-- COOKIE BANNER -->
 <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
@@ -466,10 +482,16 @@ footer{background:var(--black);color:rgba(255,255,255,.65);padding:64px 0 36px;f
       {name:'Reestructuración de Colochos',price:130000,tag:'4 sesiones',feat:true,inc:['Rizos definidos, fuertes y sanos']}
     ]
   };
-  /* RESEÑAS: agregá aquí reseñas REALES de clientas (con su permiso).
-     Formato: {text:'...', name:'Nombre o inicial', stars:5}
-     Mientras esté vacío se muestran espacios reservados. */
-  var REVIEWS = [];
+  /* GALERÍA: para agregar una foto, ponla en la carpeta img/ y añade una línea aquí.
+     wide:true = ocupa dos columnas (ideal para fotos de antes y después). */
+  var GALLERY = [
+    {src:'img/liso-antes-despues.jpg', title:'Liso orgánico · Antes y después', wide:true},
+    {src:'img/balayage-ash-blonde.jpg', title:'Balayage Ash Blonde'},
+    {src:'img/balayage-rubio.jpg', title:'Balayage Rubio'},
+    {src:'img/rizos-iluminados-2.jpg', title:'Rizos iluminados'},
+    {src:'img/balayage-caramelo.jpg', title:'Balayage caramelo'},
+    {src:'img/rizos-iluminados-1.jpg', title:'Rizos con luces'}
+  ];
 
   /* ===== helpers seguros (sin innerHTML con datos) ===== */
   function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
@@ -536,16 +558,24 @@ footer{background:var(--black);color:rgba(255,255,255,.65);padding:64px 0 36px;f
     });
   });
 
-  /* Reseñas */
-  var rg=document.getElementById('revGrid');
-  var list = REVIEWS.length ? REVIEWS : [null,null,null];
-  list.forEach(function(r){
-    var c=el('article','rev'+(r?'':' placeholder'));
-    c.appendChild(el('div','stars', r ? '★★★★★'.slice(0,r.stars||5) : '★★★★★'));
-    c.appendChild(el('p',null, r ? r.text : 'Espacio para una reseña real de clienta.'));
-    c.appendChild(el('div','who', r ? r.name : 'Próximamente'));
-    rg.appendChild(c);
+  /* Galería + visor */
+  var gg=document.getElementById('galGrid'), lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap'), cur=0, lbLast=null;
+  GALLERY.forEach(function(g,i){
+    var b=el('button','gal-item'+(g.wide?' wide':'')); b.type='button'; b.setAttribute('aria-label','Ver foto: '+g.title);
+    var im=el('img'); im.src=g.src; im.alt=g.title; im.loading='lazy'; im.decoding='async';
+    b.appendChild(im); b.appendChild(el('span','gal-cap',g.title));
+    b.addEventListener('click',function(){ lbLast=b; showLb(i); });
+    gg.appendChild(b);
   });
+  function showLb(i){ cur=(i+GALLERY.length)%GALLERY.length; lbImg.src=GALLERY[cur].src; lbImg.alt=GALLERY[cur].title; lbCap.textContent=GALLERY[cur].title; lb.classList.add('open'); lb.querySelector('.lb-x').focus(); }
+  function hideLb(){ lb.classList.remove('open'); if(lbLast) lbLast.focus(); }
+  lb.querySelector('.lb-x').addEventListener('click',hideLb);
+  lb.querySelector('.lb-prev').addEventListener('click',function(){ showLb(cur-1); });
+  lb.querySelector('.lb-next').addEventListener('click',function(){ showLb(cur+1); });
+  lb.addEventListener('click',function(e){ if(e.target===lb) hideLb(); });
+  document.addEventListener('keydown',function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') hideLb(); if(e.key==='ArrowRight') showLb(cur+1); if(e.key==='ArrowLeft') showLb(cur-1); });
+  var tx=null; lb.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',function(e){ if(tx==null) return; var dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50) showLb(cur+(dx<0?1:-1)); tx=null; });
 
   /* Tabs accesibles */
   var tabs=[].slice.call(document.querySelectorAll('.tab'));
